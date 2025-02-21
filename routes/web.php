@@ -32,3 +32,5 @@ Route::get('/user/{id}/name/{name}', [UserController::class, 'show']);
 
 // Halaman Penjualan
 Route::get('/sales', [SalesController::class, 'index']);
+Route::get('/sales/create', [SalesController::class, 'create']);
+Route::post('/sales/store', [SalesController::class, 'store'])->name('sales.store');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - POS</title>
+    <title>Tambah Transaksi - POS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,45 +28,58 @@
             text-decoration: underline;
         }
         .container {
-            max-width: 800px;
-            margin: 30px auto;
+            max-width: 600px;
+            margin: 40px auto;
             padding: 20px;
             background: white;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
         }
         h1 {
+            text-align: center;
             color: #003063;
-            font-size: 28px;
+            font-size: 26px;
         }
-        .welcome-text {
-            font-size: 18px;
-            color: #555;
-            margin-top: 15px;
-            line-height: 1.6;
-        }
-        .features {
-            list-style-type: none;
-            padding: 0;
-        }
-        .features li {
+        label {
             font-size: 16px;
-            margin: 10px 0;
+            font-weight: bold;
             color: #333;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
         }
         .btn {
-            display: inline-block;
-            padding: 12px 20px;
+            display: block;
+            width: 100%;
+            padding: 12px;
             margin-top: 20px;
             background: #125422;
             color: white;
             text-decoration: none;
+            border: none;
             border-radius: 5px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
+            cursor: pointer;
         }
         .btn:hover {
             background: #218838;
+        }
+        .btn-secondary {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            color: #555;
+            font-weight: bold;
+            text-decoration: none;
         }
         footer {
             margin-top: 40px;
@@ -75,6 +88,7 @@
             color: white;
             font-size: 14px;
             border-radius: 10px 10px 0 0;
+            text-align: center;
         }
     </style>
 </head>
@@ -91,25 +105,28 @@
     </nav>
 
     <div class="container">
-        <h1>Selamat Datang di POS - Point of Sales</h1>
-        <p class="welcome-text">
-            POS adalah solusi modern untuk mengelola transaksi penjualan dengan cepat dan efisien.  
-            Dengan sistem ini, Anda dapat dengan mudah mencatat, mengatur, dan menganalisis penjualan bisnis Anda.
-        </p>
+        <h1>Tambah Transaksi</h1>
+        
+        <form action="{{ route('sales.store') }}" method="POST">
+            @csrf
 
-        <h2>🔹 Fitur Unggulan:</h2>
-        <ul class="features">
-            <li>✅ Kelola produk dengan mudah</li>
-            <li>✅ Pantau transaksi secara real-time</li>
-            <li>✅ Manajemen kategori produk</li>
-            <li>✅ Laporan penjualan yang akurat</li>
-            <li>✅ Sistem keamanan data terjamin</li>
-        </ul>
+            <label for="product_name">Nama Produk</label>
+            <input type="text" id="product_name" name="product_name" required placeholder="Masukkan nama produk">
 
-        <p class="welcome-text">
-            Gunakan aplikasi POS sekarang untuk meningkatkan efisiensi bisnis Anda!
-        </p>
-        <a href="/sales" class="btn">💳 Mulai Transaksi</a>
+
+            <label for="quantity">Jumlah</label>
+            <input type="number" id="quantity" name="quantity" min="1" required>
+
+            <label for="total_price">Total Harga (Rp)</label>
+            <input type="number" id="total_price" name="total_price" required>
+
+            <label for="transaction_date">Tanggal Transaksi</label>
+            <input type="date" id="transaction_date" name="transaction_date" required>
+
+            <button type="submit" class="btn">Simpan Transaksi</button>
+        </form>
+
+        <a href="/sales" class="btn-secondary">⬅ Kembali ke Daftar Transaksi</a>
     </div>
 
     <footer>
